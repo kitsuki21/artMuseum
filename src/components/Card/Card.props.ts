@@ -7,4 +7,5 @@ export interface CardProps {
   main_reference_number: string;
   image_id: string;
   images: string;
+  rubrik?: string;
 }

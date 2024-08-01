@@ -1,5 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import logo from "../../assets/museum_logo.svg";
+import bookmark from "../../assets/bookmark.svg";
+import home from "../../assets/home.svg";
 
 const TopBar = styled.div`
   width: 1280px;
@@ -16,14 +20,33 @@ const TopBar = styled.div`
   }
 `;
 
-export const Header = () => {
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const Header = ({ path }) => {
   return (
     <TopBar>
-      <img src="images/museum_logo.svg" alt="logo" />
-      <a href="/">
-        <img src="images/bookmark.svg" alt="bookmark" />
-        Your favorite
-      </a>
+      <img src={logo} alt="logo" />
+      {path === "/" ? (
+        <Link to="/favorites">
+          <img src={bookmark} alt="bookmark" />
+          Your favorite
+        </Link>
+      ) : (
+        <Wrapper>
+          <Link to="/">
+            <img src={home} alt="home" />
+            Home
+          </Link>
+          <Link to="/favorites">
+            <img src={bookmark} alt="bookmark" />
+            Your favorite
+          </Link>
+        </Wrapper>
+      )}
     </TopBar>
   );
 };

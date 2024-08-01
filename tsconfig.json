@@ -2,13 +2,15 @@
   "compilerOptions": {
     "target": "ES5",
     "module": "CommonJS",
+    "allowJs": true,
     "esModuleInterop": true,
     "jsx": "react",
+    "outDir": "./",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "index.d.ts"],
   "exclude": []
 }
