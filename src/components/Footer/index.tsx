@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../../assets/museum-logo 2.svg";
-import img from "../../assets/logo modsen-02 2.png";
+import logo from "src/assets/museum-logo 2.svg";
+import img from "src/assets/logo modsen-02 2.png";
 
 const FooterSection = styled.div`
   width: 1280px;

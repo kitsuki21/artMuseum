@@ -1,21 +1,22 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
-export function useFetching(
-  callback: () => Promise<void>
-): [() => Promise<void>, Boolean, String] {
-  const [isLoadiang, setIsLoadiang] = useState<Boolean>(false);
-  const [error, setError] = useState<String>("");
+export const useFetching: <T extends () => any>(
+  callback: T
+) => [(id?: string) => Promise<any>, boolean, string] = (callback) => {
+  const [isLoadiang, setIsLoadiang] = useState(false);
+  const [error, setError] = useState("");
 
-  async function fetching(): Promise<void> {
+  const fetching: () => any = useCallback(async () => {
     try {
       setIsLoadiang(true);
       await callback();
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     } finally {
       setIsLoadiang(false);
     }
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return [fetching, isLoadiang, error];
-}
+};

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import search from "../../assets/search.svg";
+import search from "src/assets/search.svg";
 
 const Wrapper = styled.div`
   position: relative;

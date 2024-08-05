@@ -7,9 +7,7 @@
     "jsx": "react",
     "outDir": "./",
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["src*"]
-    }
+    "strict": true
   },
   "include": ["src", "index.d.ts"],
   "exclude": []

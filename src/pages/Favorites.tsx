@@ -1,23 +1,10 @@
-import React from "react";
-import { Header } from "../components/Header/Header";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { Title } from "../components/Title/Title";
-import bookmarkicon from "../assets/icon.svg";
-import { Footer } from "../components/Footer/Footer";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: linear-gradient(
-    90deg,
-    #343333 38.05%,
-    #484848 69.22%,
-    #282828 98.98%
-  );
-  height: 127px;
-`;
+import { Title } from "src/components/Title";
+import bookmarkicon from "src/assets/icon.svg";
+import { FavoritesContext } from "src/App";
+import { Card } from "src/components/Card";
+import { Layout } from "src/components/Layout";
 
 const Span = styled.span`
   display: flex;
@@ -26,10 +13,18 @@ const Span = styled.span`
   color: rgba(241, 121, 0, 1);
 `;
 
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 1280px;
+`;
+
 export const Favorites = () => {
+  const [favorites] = useContext(FavoritesContext);
+
   return (
-    <Wrapper>
-      <Header path="/favorites" />
+    <Layout>
       <Title appereance="title">
         Here are your{" "}
         <Span>
@@ -42,7 +37,15 @@ export const Favorites = () => {
         {" "}
         <span>Saved by you</span>Your favorites list
       </Title>
-      <Footer />
-    </Wrapper>
+      <ContentWrapper>
+        {favorites.map((artWork) => (
+          <Card
+            size=""
+            images={`https://www.artic.edu/iiif/2/${artWork.image_id}/full/843,/0/default.jpg`}
+            {...artWork}
+          />
+        ))}
+      </ContentWrapper>
+    </Layout>
   );
 };

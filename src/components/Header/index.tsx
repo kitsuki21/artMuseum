@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../../assets/museum_logo.svg";
-import bookmark from "../../assets/bookmark.svg";
-import home from "../../assets/home.svg";
+import logo from "src/assets/museum_logo.svg";
+import bookmark from "src/assets/bookmark.svg";
+import home from "src/assets/home.svg";
 
 const TopBar = styled.div`
   width: 1280px;
@@ -26,7 +26,11 @@ const Wrapper = styled.div`
   gap: 10px;
 `;
 
-export const Header = ({ path }) => {
+interface HeaderProps {
+  path: string;
+}
+
+export const Header = ({ path }: HeaderProps) => {
   return (
     <TopBar>
       <img src={logo} alt="logo" />

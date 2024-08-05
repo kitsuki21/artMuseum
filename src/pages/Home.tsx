@@ -1,34 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Header } from "../components/Header/Header";
-import { ArtWorks } from "../components/ArtWorks/ArtWorks";
-import { Footer } from "../components/Footer/Footer";
-import { Search } from "../components/Search/Search";
-import { Title } from "../components/Title/Title";
-import PostService from "../API/PostService";
-import { CardProps } from "../components/Card/Card.props";
-import { Loader } from "../components/UI/Loader/Loader";
-import { useFetching } from "../hooks/useFetching";
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: linear-gradient(
-    90deg,
-    #343333 38.05%,
-    #484848 69.22%,
-    #282828 98.98%
-  );
-  height: 127px;
-`;
-
-const WrapperFooter = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+import { ArtWorks } from "src/components/ArtWorks";
+import { Search } from "src/components/Search";
+import { Title } from "src/components/Title";
+import PostService from "src/API/PostService";
+import { Loader } from "src/components/UI/Loader";
+import { useFetching } from "src/hooks/useFetching";
+import { CardProps } from "src/components/Card";
+import { Layout } from "src/components/Layout";
+import { getPageCount } from "src/utils/pages";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -38,22 +19,43 @@ const ContentContainer = styled.div`
 `;
 
 export const Home = () => {
-  const [artWorks, setArtWorks] = useState<CardProps[]>([]);
+  const [artWorksAll, setArtWorksAll] = useState<CardProps[]>([]);
+  const [artWorkOther, setArtWorkOther] = useState<CardProps[]>([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [limit, setLimit] = useState(3);
+  const [page, setPage] = useState(1);
+  let pagesArray = [];
+  for (let i = 0; i <= totalPages; i++) {
+    pagesArray.push(i + 1);
+  }
+
   const [fetchArtWorks, isLoadiangArtWorks, artWorkError] = useFetching(
     async () => {
-      const artWorkss = await PostService.getAll();
-      setArtWorks(artWorkss);
+      const responsive = await PostService.getAll(limit, page);
+      const totalCount = 27;
+      setTotalPages(getPageCount(totalCount, limit));
+      setArtWorksAll(responsive.data);
     }
   );
+
   useEffect(() => {
     fetchArtWorks();
+  }, [fetchArtWorks]);
+
+  useEffect(() => {
+    getArtWorkOther();
   }, []);
 
+  const getArtWorkOther = async () => {
+    const responsive = await PostService.getOtherWorks();
+    setArtWorkOther(responsive.data);
+  };
+
+  console.log(pagesArray, "totalHome");
+  // console.log(totalCount);
+
   return (
-    <>
-      <Wrapper>
-        <Header path="/" />
-      </Wrapper>
+    <Layout>
       <ContentContainer>
         <Title appereance="title">
           {" "}
@@ -66,7 +68,11 @@ export const Home = () => {
         </Title>
         {artWorkError && <h1>Произошла ошибка ${artWorkError}</h1>}
         {!isLoadiangArtWorks ? (
-          <ArtWorks name="Our special" artWorks={artWorks} />
+          <ArtWorks
+            sizeContainer="full"
+            artWorks={artWorksAll}
+            pagesArray={pagesArray}
+          />
         ) : (
           <Loader />
         )}
@@ -76,14 +82,11 @@ export const Home = () => {
         </Title>
         {artWorkError && <h1>Произошла ошибка${artWorkError}</h1>}
         {!isLoadiangArtWorks ? (
-          <ArtWorks artWorks={artWorks} name="Other works" />
+          <ArtWorks artWorks={artWorkOther} sizeContainer="mini" />
         ) : (
           <Loader />
         )}
       </ContentContainer>
-      <WrapperFooter>
-        <Footer />
-      </WrapperFooter>
-    </>
+    </Layout>
   );
 };
