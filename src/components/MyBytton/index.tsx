@@ -1,8 +1,9 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Button } from "./styled";
+import addBookMark from "src/assets/addedbookmark.svg";
 
 interface ButtonProps {
-  children: React.JSX.Element;
+  children: ReactNode;
   onClick?: () => void;
 }
 

@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Title } from "src/components/Title";
 import bookmarkicon from "src/assets/icon.svg";
-import { FavoritesContext } from "src/App";
 import { Card } from "src/components/Card";
 import { Layout } from "src/components/Layout";
+import { useFavorites } from "src/context/FavoritesProvader";
 
 const Span = styled.span`
   display: flex;
@@ -21,7 +21,8 @@ const ContentWrapper = styled.div`
 `;
 
 export const Favorites = () => {
-  const [favorites] = useContext(FavoritesContext);
+  const [favorites] = useFavorites();
+  console.log(favorites.length);
 
   return (
     <Layout>

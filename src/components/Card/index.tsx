@@ -12,9 +12,10 @@ import {
   Public,
   Wrapper,
 } from "./styled";
-import { FavoritesContext } from "src/App";
+
 import { APIProps } from "src/Type/API";
 import { MyBytton } from "../MyBytton";
+import { useFavorites } from "src/context/FavoritesProvader";
 
 export interface CardProps {
   id: number;
@@ -30,7 +31,7 @@ export interface CardProps {
 
 export const Card = ({ size, images, ...props }: CardProps) => {
   const navigate = useNavigate();
-  const [favorites, setFavorites] = useContext(FavoritesContext);
+  const [favorites, setFavorites] = useFavorites();
   const [isAddedWork, setIsAddedWork] = useState<boolean>(false);
 
   const handleCardClick = () => {
@@ -56,11 +57,11 @@ export const Card = ({ size, images, ...props }: CardProps) => {
   };
 
   const removeCardFavorites = (id: number) => {
-    if (props.id === id) {
-      setFavorites(favorites.filter((artWork) => artWork.id !== id));
-      setIsAddedWork(false);
-    }
+    setFavorites(favorites.filter((artWork) => artWork.id !== id));
+    setIsAddedWork(false);
   };
+
+  console.log(favorites.length);
 
   return (
     <Wrapper>
