@@ -1,41 +1,34 @@
 import React from "react";
 import { Card } from "../Card";
 import { ContentContainerCard, ContentContainerCardOther } from "./styled";
-import { APIProps } from "src/type/api";
-import { useFavorites } from "src/context/FavoritesProvader";
+import { ArtWork } from "src/types";
 
 interface ArtWorksProps {
   sizeContainer: string;
-  artWorks: APIProps[];
+  artWorks: ArtWork[];
 }
 
 export const ArtWorks = ({ sizeContainer, artWorks }: ArtWorksProps) => {
-  const [_, __, getArtWorkInFavorites] = useFavorites();
-
   return (
     <>
       {sizeContainer === "full" ? (
         <>
           <ContentContainerCard>
-            {artWorks.map<React.JSX.Element>((artWork: APIProps) => (
+            {artWorks.map<React.JSX.Element>((artWork: ArtWork) => (
               <Card
                 key={artWork.id}
-                {...artWork}
-                images={`https://www.artic.edu/iiif/2/${artWork.image_id}/full/843,/0/default.jpg`}
+                artWork={artWork}
                 size="fullSize"
-                defaultValue={!!getArtWorkInFavorites(artWork.id)}
               />
             ))}
           </ContentContainerCard>
         </>
       ) : (
         <ContentContainerCardOther>
-          {artWorks.map((artWork: React.JSX.IntrinsicAttributes & APIProps) => (
+          {artWorks.map((artWork: React.JSX.IntrinsicAttributes & ArtWork) => (
             <Card
               key={artWork.id}
-              {...artWork}
-              images={`https://www.artic.edu/iiif/2/${artWork.image_id}/full/843,/0/default.jpg`}
-              defaultValue={!!getArtWorkInFavorites(artWork.id)}
+              artWork={artWork}
             />
           ))}
         </ContentContainerCardOther>

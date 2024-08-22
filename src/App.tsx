@@ -4,11 +4,11 @@ import { Home } from "src/pages/Home";
 import { Favorites } from "src/pages/Favorites";
 import { DetailDescription } from "src/pages/DetailDescription";
 
-import { FavoriteProvader } from "./context/FavoritesProvader";
+import { FavoriteProvider } from "./context/FavoritesProvider";
 
 function App() {
   return (
-    <FavoriteProvader>
+    <FavoriteProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -16,7 +16,7 @@ function App() {
           <Route path="/artwork/:id" element={<DetailDescription />} />
         </Routes>
       </BrowserRouter>
-    </FavoriteProvader>
+    </FavoriteProvider>
   );
 }
 

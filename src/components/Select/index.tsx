@@ -1,25 +1,25 @@
 import React from "react";
+import { SortKey } from "src/pages/Home";
 
+
+export interface SelectOption {
+  value: string, name: string, disabled?: boolean,
+}
 interface SelectProps {
-  options: any;
-  defaultValue: string;
+  options: SelectOption[];
   value: string;
-  onChange: (value: string) => void;
+  onChange: (value: SortKey) => void;
 }
 
 export const Select = ({
   options,
-  defaultValue,
   value,
   onChange,
 }: SelectProps) => {
   return (
-    <select value={value} onChange={(event) => onChange(event.target.value)}>
-      <option disabled value="">
-        {defaultValue}
-      </option>
+    <select value={value} onChange={(event) => onChange(event.target.value as SortKey)}>
       {options.map((option: any) => (
-        <option key={option.value} value={option.value}>
+        <option key={option.value} value={option.value} disabled={option.disabled}>
           {option.name}
         </option>
       ))}

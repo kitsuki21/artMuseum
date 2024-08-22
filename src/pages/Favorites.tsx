@@ -4,7 +4,7 @@ import { Typography } from "src/components/Typography";
 import bookmarkicon from "src/assets/icon.svg";
 import { Card } from "src/components/Card";
 import { Layout } from "src/components/Layout";
-import { useFavorites } from "src/context/FavoritesProvader";
+import { useFavorites } from "src/context/FavoritesProvider";
 import { Link } from "react-router-dom";
 
 const Span = styled.span`
@@ -23,7 +23,7 @@ const ContentWrapper = styled.div<{ $center: string }>`
 `;
 
 export const Favorites = () => {
-  const [favorites] = useFavorites();
+  const { favorites } = useFavorites();
   const aligtItems = favorites?.length === 0 ? "center" : "";
 
   return (
@@ -48,9 +48,7 @@ export const Favorites = () => {
             <Card
               key={artWork.id}
               size=""
-              images={`https://www.artic.edu/iiif/2/${artWork.image_id}/full/843,/0/default.jpg`}
-              {...artWork}
-              defaultValue={true}
+              artWork={artWork}
             />
           ))
         )}
