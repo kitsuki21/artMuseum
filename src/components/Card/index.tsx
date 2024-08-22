@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import bookmark from "src/assets/bookmark.svg";
 import addBookMark from "src/assets/addedbookmark.svg";
@@ -12,8 +12,7 @@ import {
   Public,
   Wrapper,
 } from "./styled";
-
-import { APIProps } from "src/Type/API";
+import { APIProps } from "src/type/api";
 import { MyBytton } from "../MyBytton";
 import { useFavorites } from "src/context/FavoritesProvader";
 
@@ -27,12 +26,20 @@ export interface CardProps {
   image_id: string;
   images: string;
   size?: string;
+  defaultValue?: boolean | null;
 }
 
-export const Card = ({ size, images, ...props }: CardProps) => {
+export const Card = ({
+  defaultValue = false,
+  size,
+  images,
+  ...props
+}: CardProps) => {
   const navigate = useNavigate();
   const [favorites, setFavorites] = useFavorites();
-  const [isAddedWork, setIsAddedWork] = useState<boolean>(false);
+  const [isAddedWork, setIsAddedWork] = useState<boolean>(
+    defaultValue ?? false
+  );
 
   const handleCardClick = () => {
     navigate(`/artwork/${props.id}`);
@@ -51,17 +58,15 @@ export const Card = ({ size, images, ...props }: CardProps) => {
     };
 
     if (props.id === id) {
-      setFavorites([...favorites, newArtWork]);
+      favorites && setFavorites([...favorites, newArtWork]);
       setIsAddedWork(true);
     }
   };
 
   const removeCardFavorites = (id: number) => {
-    setFavorites(favorites.filter((artWork) => artWork.id !== id));
+    favorites && setFavorites(favorites.filter((artWork) => artWork.id !== id));
     setIsAddedWork(false);
   };
-
-  console.log(favorites.length);
 
   return (
     <Wrapper>
@@ -72,18 +77,18 @@ export const Card = ({ size, images, ...props }: CardProps) => {
         <ArtImage src={images} alt="img" />
         <WrapperDescription>
           <Description>
-            <Title>{props.title}</Title>
-            <ArtistTitle>{props.artist_title}</ArtistTitle>
+            <Title>{props.title?.slice(0, 19)}</Title>
+            <ArtistTitle>{props.artist_title?.slice(0, 19)}</ArtistTitle>
             <Public>Public</Public>
           </Description>
         </WrapperDescription>
       </WrapperCard>
       {isAddedWork ? (
-        <MyBytton onClick={() => removeCardFavorites(props.id)}>
+        <MyBytton onClick={() => removeCardFavorites(props.id)} position={true}>
           <img src={addBookMark} alt="addbookmark" />
         </MyBytton>
       ) : (
-        <MyBytton onClick={() => addedCardFavorites(props.id)}>
+        <MyBytton onClick={() => addedCardFavorites(props.id)} position={true}>
           <img src={bookmark} alt="bookmark" />
         </MyBytton>
       )}

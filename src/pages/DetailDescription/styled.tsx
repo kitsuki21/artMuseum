@@ -14,6 +14,7 @@ export const LeftSide = styled.div`
 export const ArtImage = styled.img`
   width: 497px;
   height: 570px;
+  object-fit: cover;
 `;
 export const BookMark = styled.img`
   width: 24px;
@@ -71,10 +72,8 @@ export const Title = styled.p`
 
 export const Wrapper = styled.div`
   height: 19px;
-
   display: flex;
   gap: 16px;
-
   & span {
     color: rgba(224, 164, 73, 1);
   }

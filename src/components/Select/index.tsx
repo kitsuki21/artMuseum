@@ -4,7 +4,7 @@ interface SelectProps {
   options: any;
   defaultValue: string;
   value: string;
-  onChange?: any;
+  onChange: (value: string) => void;
 }
 
 export const Select = ({

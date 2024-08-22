@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+export const Button = styled.button<{ $position?: string }>`
   position: absolute;
-  right: 44px;
+  right: ${(props) => props.$position || "44px"};
   bottom: 35px;
+  top: ${(props) => props.$position || ""};
   width: 59px;
   height: 59px;
   border-radius: 100%;

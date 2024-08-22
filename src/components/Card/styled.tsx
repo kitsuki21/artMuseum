@@ -27,7 +27,6 @@ export const WrapperCard = styled.div<{ type: "fullSize" | "miniSize" }>`
           flex-direction: row;
           align-items: center;
           justify-content: center;
-          margin-bottom: 10px;
           ${ArtImage} {
             width: 80px;
             height: 80px;
@@ -44,6 +43,7 @@ export const Wrapper = styled.div`
 export const ArtImage = styled.img`
   width: 387px;
   height: 444px;
+  object-fit: cover;
 `;
 
 export const WrapperDescription = styled.div`
@@ -68,8 +68,6 @@ export const Title = styled.p`
   line-height: 26px;
   color: rgba(57, 57, 57, 1);
   margin: 0;
-  overflow: hidden;
-  height: 27px;
 `;
 
 export const ArtistTitle = styled.p`
@@ -77,8 +75,6 @@ export const ArtistTitle = styled.p`
   font-size: 17px;
   font-weight: 400;
   margin: 0;
-  overflow: hidden;
-  height: 27px;
 `;
 
 export const Public = styled.p`

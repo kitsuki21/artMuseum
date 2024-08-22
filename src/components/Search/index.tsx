@@ -19,10 +19,20 @@ const Wrapper = styled.div`
   }
 `;
 
-export const Search = () => {
+interface InputProps {
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const Search = ({ searchQuery, setSearchQuery }: InputProps) => {
   return (
     <Wrapper>
-      <input type="text" placeholder="Search art, artist, work" />
+      <input
+        type="text"
+        placeholder="Search art, artist, work"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
       <img src={search} alt="search icon" />
     </Wrapper>
   );

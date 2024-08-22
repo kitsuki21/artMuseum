@@ -18,6 +18,18 @@ const Rotate = styled.div`
   animation: ${rotate} 2s linear infinite;
 `;
 
+const Wrapper = styled.div`
+  width: 1280px;
+  height: 514px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Loader = () => {
-  return <Rotate></Rotate>;
+  return (
+    <Wrapper>
+      <Rotate></Rotate>
+    </Wrapper>
+  );
 };

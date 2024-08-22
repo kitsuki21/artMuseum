@@ -12,4 +12,5 @@ export const Wrapper = styled.div`
     #282828 98.98%
   );
   height: 127px;
+  gap: 40px;
 `;

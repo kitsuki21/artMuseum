@@ -1,12 +1,22 @@
 import React, { ReactNode } from "react";
 import { Button } from "./styled";
-import addBookMark from "src/assets/addedbookmark.svg";
 
 interface ButtonProps {
   children: ReactNode;
-  onClick?: () => void;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  position?: boolean;
 }
 
-export const MyBytton = ({ onClick, children }: ButtonProps) => {
-  return <Button onClick={onClick}>{children}</Button>;
+export const MyBytton = ({ position, onClick, children }: ButtonProps) => {
+  return (
+    <>
+      {position ? (
+        <Button onClick={onClick}>{children}</Button>
+      ) : (
+        <Button $position="16px" onClick={onClick}>
+          {children}
+        </Button>
+      )}
+    </>
+  );
 };
