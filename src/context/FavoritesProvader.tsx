@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { ArtWork } from "src/type";
+import { ArtWork } from "src/types";
 
 const FavoritesContext = createContext<{
   favorites: ArtWork[];

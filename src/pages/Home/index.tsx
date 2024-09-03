@@ -7,7 +7,7 @@ import { Loader } from "src/components/UI/Loader";
 import { useFetching } from "src/hooks/useFetching";
 import { Layout } from "src/components/Layout";
 import { Select } from "src/components/Select";
-import { ArtWork } from "src/type";
+import { ArtWork } from "src/types";
 import {
   ContainerSearchArtWorks,
   ContentContainer,

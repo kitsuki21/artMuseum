@@ -1,6 +1,6 @@
 import axios from "axios";
-import { ArtWork } from "src/type";
-import { ArtWorkByIdResponse, ArtWorksResponse } from "src/type/api";
+import { ArtWork } from "src/types";
+import { ArtWorkByIdResponse, ArtWorksResponse } from "src/types/api";
 import defaulPhoto from "src/assets/defaultPhoto.png";
 
 const getFiltersArtWork: (data: ArtWorksResponse["data"]) => ArtWork[] = (

@@ -3,7 +3,7 @@ import { Card } from "../Card";
 import { ContentContainerCard, ContentContainerCardOther } from "./styled";
 
 import { useFavorites } from "src/context/FavoritesProvader";
-import { ArtWork } from "src/type";
+import { ArtWork } from "src/types";
 
 interface ArtWorksProps {
   sizeContainer: string;

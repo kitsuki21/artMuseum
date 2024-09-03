@@ -20,7 +20,7 @@ import addBookmark from "src/assets/addedbookmark.svg";
 import { useFetching } from "src/hooks/useFetching";
 import PostService from "src/API/PostService";
 import { useFavorites } from "src/context/FavoritesProvader";
-import { ArtWork } from "src/type";
+import { ArtWork } from "src/types";
 import { Sceleton } from "src/components/Sceleton";
 import defaultPhoto from "src/assets/defaultFoto.png";
 

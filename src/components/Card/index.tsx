@@ -14,7 +14,7 @@ import {
 } from "./styled";
 import { MyBytton } from "../MyBytton";
 import { useFavorites } from "src/context/FavoritesProvader";
-import { ArtWork } from "src/type";
+import { ArtWork } from "src/types";
 import defaultPhoto from "src/assets/defaultFoto.png";
 
 export interface CardProps {
