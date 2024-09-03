@@ -5,6 +5,8 @@ export const WrapperCard = styled.div<{ type: "fullSize" | "miniSize" }>`
     switch (type) {
       case "fullSize":
         return css`
+          display: flex;
+          justify-content: center;
           position: relative;
           height: 514px;
           width: 387px;
@@ -28,6 +30,7 @@ export const WrapperCard = styled.div<{ type: "fullSize" | "miniSize" }>`
           align-items: center;
           justify-content: center;
           ${ArtImage} {
+            padding-left: 13px;
             width: 80px;
             height: 80px;
           }
@@ -38,6 +41,12 @@ export const WrapperCard = styled.div<{ type: "fullSize" | "miniSize" }>`
 
 export const Wrapper = styled.div`
   position: relative;
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.34);
+  &:hover {
+    box-shadow: 0px 7px 14px 5px rgba(34, 60, 80, 0.46);
+    transform: translate3d(5px, 5px, 100px);
+    transition: all 0.3s ease;
+  }
 `;
 
 export const ArtImage = styled.img`

@@ -1,21 +1,34 @@
 import styled from "styled-components";
 
+export const WrraperContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Content = styled.div`
   display: flex;
-  width: 1280px;
+  max-width: 1280px;
   margin: 120px 0 40px 0;
   gap: 80px;
 `;
 
 export const LeftSide = styled.div`
   position: relative;
+  background-image: url("/src/asets/defaultPhoto/png");
+  background-size: 500px 500px;
 `;
 
 export const ArtImage = styled.img`
   width: 497px;
   height: 570px;
   object-fit: cover;
+  -webkit-box-shadow: 9px 9px 11px -6px rgba(34, 60, 80, 0.47);
+  -moz-box-shadow: 9px 9px 11px -6px rgba(34, 60, 80, 0.47);
+  box-shadow: 9px 9px 11px -6px rgba(34, 60, 80, 0.47);
 `;
+
 export const BookMark = styled.img`
   width: 24px;
   height: 24px;

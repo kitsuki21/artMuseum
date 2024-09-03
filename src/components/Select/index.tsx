@@ -1,28 +1,41 @@
 import React from "react";
+import { SortKey } from "src/pages/Home";
+import styled from "styled-components";
 
-interface SelectProps {
-  options: any;
-  defaultValue: string;
+export interface SelectOption {
   value: string;
-  onChange: (value: string) => void;
+  name: string;
+  disabled?: boolean;
+}
+interface SelectProps {
+  options: SelectOption[];
+  value: string;
+  onChange: (value: SortKey) => void;
 }
 
-export const Select = ({
-  options,
-  defaultValue,
-  value,
-  onChange,
-}: SelectProps) => {
+const SelectWindow = styled.select`
+  width: 200px;
+  height: 34px;
+  border-radius: 5px;
+  border: solid 3px;
+  margin-bottom: 20px;
+`;
+
+export const Select = ({ options, value, onChange }: SelectProps) => {
   return (
-    <select value={value} onChange={(event) => onChange(event.target.value)}>
-      <option disabled value="">
-        {defaultValue}
-      </option>
+    <SelectWindow
+      value={value}
+      onChange={(event) => onChange(event.target.value as SortKey)}
+    >
       {options.map((option: any) => (
-        <option key={option.value} value={option.value}>
+        <option
+          key={option.value}
+          value={option.value}
+          disabled={option.disabled}
+        >
           {option.name}
         </option>
       ))}
-    </select>
+    </SelectWindow>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 import search from "src/assets/search.svg";
 
@@ -12,19 +12,25 @@ const Wrapper = styled.div`
     border-radius: 16px;
     border: none;
   }
-  & img {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-  }
+`;
+
+const MagnifierIcon = styled.img`
+  position: absolute;
+  top: 15px;
+  right: 15px;
 `;
 
 interface InputProps {
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  children: ReactNode;
 }
 
-export const Search = ({ searchQuery, setSearchQuery }: InputProps) => {
+export const Search = ({
+  searchQuery,
+  setSearchQuery,
+  children,
+}: InputProps) => {
   return (
     <Wrapper>
       <input
@@ -33,7 +39,8 @@ export const Search = ({ searchQuery, setSearchQuery }: InputProps) => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <img src={search} alt="search icon" />
+      <MagnifierIcon src={search} alt="search icon" />
+      {children}
     </Wrapper>
   );
 };

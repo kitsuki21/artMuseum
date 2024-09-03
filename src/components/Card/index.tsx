@@ -12,61 +12,27 @@ import {
   Public,
   Wrapper,
 } from "./styled";
-import { APIProps } from "src/type/api";
 import { MyBytton } from "../MyBytton";
 import { useFavorites } from "src/context/FavoritesProvader";
+import { ArtWork } from "src/type";
+import defaultPhoto from "src/assets/defaultFoto.png";
 
 export interface CardProps {
-  id: number;
-  title: string;
-  artist_display: string;
-  artist_title: string;
-  date_display: string;
-  main_reference_number: string;
-  image_id: string;
-  images: string;
   size?: string;
   defaultValue?: boolean | null;
+  artWork: ArtWork;
 }
 
-export const Card = ({
-  defaultValue = false,
-  size,
-  images,
-  ...props
-}: CardProps) => {
+export const Card = ({ defaultValue = false, size, artWork }: CardProps) => {
   const navigate = useNavigate();
-  const [favorites, setFavorites] = useFavorites();
-  const [isAddedWork, setIsAddedWork] = useState<boolean>(
-    defaultValue ?? false
-  );
+  const { addCardFavorites, removeCardFavorites, checkIsAdded } =
+    useFavorites();
 
   const handleCardClick = () => {
-    navigate(`/artwork/${props.id}`);
+    navigate(`/artwork/${artWork.id}`);
   };
 
-  const addedCardFavorites = (id: number) => {
-    const newArtWork: APIProps = {
-      id: props.id,
-      title: props.title,
-      artist_title: props.artist_title,
-      artist_display: props.artist_display,
-      date_display: props.artist_display,
-      main_reference_number: props.main_reference_number,
-      image_id: props.image_id,
-      images,
-    };
-
-    if (props.id === id) {
-      favorites && setFavorites([...favorites, newArtWork]);
-      setIsAddedWork(true);
-    }
-  };
-
-  const removeCardFavorites = (id: number) => {
-    favorites && setFavorites(favorites.filter((artWork) => artWork.id !== id));
-    setIsAddedWork(false);
-  };
+  const isAdded = checkIsAdded(artWork.id);
 
   return (
     <Wrapper>
@@ -74,21 +40,21 @@ export const Card = ({
         type={size ? "fullSize" : "miniSize"}
         onClick={handleCardClick}
       >
-        <ArtImage src={images} alt="img" />
+        <ArtImage src={artWork.images} alt="" />
         <WrapperDescription>
           <Description>
-            <Title>{props.title?.slice(0, 19)}</Title>
-            <ArtistTitle>{props.artist_title?.slice(0, 19)}</ArtistTitle>
+            <Title>{artWork.title?.slice(0, 19)}</Title>
+            <ArtistTitle>{artWork.artist_title?.slice(0, 19)}</ArtistTitle>
             <Public>Public</Public>
           </Description>
         </WrapperDescription>
       </WrapperCard>
-      {isAddedWork ? (
-        <MyBytton onClick={() => removeCardFavorites(props.id)} position={true}>
+      {isAdded ? (
+        <MyBytton onClick={() => removeCardFavorites(artWork)} position={true}>
           <img src={addBookMark} alt="addbookmark" />
         </MyBytton>
       ) : (
-        <MyBytton onClick={() => addedCardFavorites(props.id)} position={true}>
+        <MyBytton onClick={() => addCardFavorites(artWork)} position={true}>
           <img src={bookmark} alt="bookmark" />
         </MyBytton>
       )}
