@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/artMuseum/static/css/main.cb5ceaf6.css",
+    "main.js": "/artMuseum/static/js/main.0f972cbf.js",
+    "static/media/museum-logo 2.svg": "/artMuseum/static/media/museum-logo 2.7ab5edf03fd6dd7237c36a4b50391596.svg",
+    "static/media/museum_logo.svg": "/artMuseum/static/media/museum_logo.7a0bd9dae0a0871be849b3fd9d213210.svg",
+    "index.html": "/artMuseum/index.html",
+    "static/media/addedbookmark.svg": "/artMuseum/static/media/addedbookmark.d9552c21cdae816b66f2d93abb50f666.svg",
+    "static/media/home.svg": "/artMuseum/static/media/home.6b15244d46321178e817730f0ec05b33.svg",
+    "static/media/icon.svg": "/artMuseum/static/media/icon.cacac5e2ae21d2dbc6677acb1d90cc71.svg",
+    "static/media/search.svg": "/artMuseum/static/media/search.1bfdfc3d954023f54fdd260a0178580b.svg",
+    "static/media/bookmark.svg": "/artMuseum/static/media/bookmark.b2b32b7d1d9456229c0ad956ce61e2d0.svg",
+    "main.cb5ceaf6.css.map": "/artMuseum/static/css/main.cb5ceaf6.css.map",
+    "main.0f972cbf.js.map": "/artMuseum/static/js/main.0f972cbf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cb5ceaf6.css",
+    "static/js/main.0f972cbf.js"
+  ]
+}
